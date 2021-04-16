@@ -14,3 +14,9 @@
   - Tools: Just small scripts to help doing specific things in your save such as resetting a specific part of your save
 
   - Misc: uncategorised programs to do useless fun things to your save  
+
+### Currently working on
+
+- A program to assist with navigation
+
+- Researching GameStatsManager related Bugs
