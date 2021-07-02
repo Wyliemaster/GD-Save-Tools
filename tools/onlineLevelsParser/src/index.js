@@ -5,6 +5,7 @@ const robtop = require('./parseString.js')
 
 const save = crypto.decodeCCFile('CCGameManager.dat')
 
+if (save.search('<k>GLM_03</k><d />') != -1) return console.log("[LOG] Cant find any online levels")
 // wanted to use this RegExp but larger OnlineLevelDicts seem to break
 // let data = save.match(/<k>GLM_03<\/k>(.*?)(?=<k>GLM_)/)
 let onlineLevels = save.slice(save.search("<k>GLM_03</k>"), save.search("<k>GLM_10</k>"))
