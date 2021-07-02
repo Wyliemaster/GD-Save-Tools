@@ -1,4 +1,3 @@
-const { on } = require('events')
 const fs = require('fs')
 const crypto = require('./crypto.js')
 const robtop = require('./parseString.js')
