@@ -2,7 +2,7 @@ const fs = require('fs')
 const crypto = require('./crypto.js')
 const robtop = require('./parseString.js')
 
-const save = crypto.decodeCCFile('CCGameManager.dat')
+const save = crypto.decodeCCFile('CCGameManager.dat').replace(/<t \/>/g, '<t>true<\/t>')
 
 if (save.search('<k>GLM_03</k><d />') != -1) return console.log("[LOG] Cant find any online levels")
 // wanted to use this RegExp but larger OnlineLevelDicts seem to break
