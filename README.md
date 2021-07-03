@@ -15,8 +15,12 @@
 
   - Misc: uncategorised programs to do useless fun things to your save  
 
-### Currently working on
+### TODO:
 
-- A program to assist with navigation
+these are the things that i currently want to do
 
-- Researching GameStatsManager related Bugs
+- make `crypto.js` a global lib
+
+- directory containing a batch file for every 
+
+- tidy old code up
