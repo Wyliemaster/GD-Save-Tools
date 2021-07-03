@@ -13,9 +13,17 @@ for (let i = 0; i < config.levelIDs.length; i++) {
         let regex = new RegExp(`<k>${config.levelIDs[i]}</k><d>(.*?)</d>`, 'g')
         let level = data.match(regex)
 
+
         // remove all GJGameLevel entries
         for (let l = 0; l < level.length; l++) {
-            data = data.replace(level[l], '')
+            if (config.keepMetaData) {
+                let percentages = level[l].replace(/<k>(k19|k20|k71|k90)<\/k><i>\d+<\/i>/g, '<k>$1</k><i>0</i>')
+                percentages = percentages.replace(/<k>k88<\/k><s>(.*?)<\/s>/g, '<k>k88</k><s>0</s>')
+                data = data.replace(level[l], percentages)
+            } else {
+
+                data = data.replace(level[l], '')
+            }
         }
 
         let completedRegex = new RegExp(`<k>([a-z]*?)_${config.levelIDs[i]}</k><s>1</s>`, 'g')
