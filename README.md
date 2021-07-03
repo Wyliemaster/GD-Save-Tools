@@ -24,3 +24,5 @@ these are the things that i currently want to do
 - directory containing a batch file for every 
 
 - tidy old code up
+
+- LLM->JSON 
