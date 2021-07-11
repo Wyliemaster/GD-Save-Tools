@@ -12,7 +12,15 @@ function Xor(key, string) {
 }
 
 function decodeCCFile(save) {
-    saveData = fs.readFileSync(`${__dirname}/../${save}`, "utf-8")
+    if (config.useAppData) {
+        saveData = fs.readFileSync(`${process.env.LOCALAPPDATA}/GeometryDash/${save}`, 'utf-8')
+        if (!fs.existsSync(`${process.env.LOCALAPPDATA}/GeometryDash/backup`))
+            fs.mkdirSync(`${process.env.LOCALAPPDATA}/GeometryDash/backup`)
+        fs.writeFileSync(`${process.env.LOCALAPPDATA}/GeometryDash/backup/${Date.now()}.CCGameManager.dat.bak`, saveData)
+    }
+    else {
+        saveData = fs.readFileSync(`${__dirname}/../${save}`, "utf-8");
+    }
 
     //check if the save file is already decoded so i don't try to decode a decoded version
     if (saveData.startsWith('<?xml')) { console.log('[LOG] your save is already decoded'); return saveData; }
@@ -31,9 +39,7 @@ function calculateLevelSeed(hasPlayed, clicks, percentage, seconds) {
 }
 
 
-
 let data = decodeCCFile('CCGameManager.dat');
-
 GSRegex = new RegExp(`<k>GS_completed</k><d>(.*?)</d>`)
 GS_completed = data.match(GSRegex)[1]
 
@@ -118,4 +124,10 @@ try {
 }
 
 console.log(`[LOG]: Stars Deducted: ${starLoss} | Demons Deducted: ${demonLoss}`)
-fs.writeFileSync(`${__dirname}/../build/CCGameManager.dat`, data)
+
+if (config.useAppData) {
+    fs.writeFileSync(`${process.env.LOCALAPPDATA}/GeometryDash/CCGameManager.dat`, data);
+    if (fs.existsSync(`${process.env.LOCALAPPDATA}/GeometryDash/CCGameManager2.dat`))
+        fs.unlinkSync(`${process.env.LOCALAPPDATA}/GeometryDash/CCGameManager2.dat`);
+} else
+    fs.writeFileSync(`${__dirname}/../build/CCGameManager.dat`, data);

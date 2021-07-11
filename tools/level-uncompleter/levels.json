@@ -1,7 +1,10 @@
 {
     "levelIDs": [
         60605814,
-        69274427
+        69274427,
+        57836775,
+        69069448
     ],
-    "keepMetaData": true
+    "keepMetaData": true,
+    "useAppData": true
 }
